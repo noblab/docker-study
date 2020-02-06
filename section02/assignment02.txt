@@ -1,0 +1,20 @@
+DNS round robin testing
+
+Assignment{
+  two DNS(using same DNSname) host
+  create a virtual network
+  create two containers from elasticsearch:2
+  -net-alias {name} create {name} alias DNS
+  use alpine nslookup search with --net to see the two containers
+  use centos curl -s search:9200 with --net multiple times until you see both name fields
+}
+
+docker network create dude
+
+docker container run -d --net dude --net-alias search elasticsearch:2
+
+docker container run -d --net dude --net-alias search elasticsearch:2
+二つelastic search のコンテナを開く
+
+docker container run --rm --net dude alpine nslookup search
+

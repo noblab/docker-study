@@ -1,0 +1,25 @@
+Dockerで二つの異なるOSを起動しcurlを入れてそのバージョンを確認
+
+docker container run -it 新しいコンテナを起動しインタラクティブシェルを立ち上げる
+
+docker container run --rm -it とすればexitしたら消えるコンテナを立ち上げる
+
+docker container exec -it 既存のコンテナのインタラクティブシェルを立ち上げる
+
+docker container run -it --name basic ubuntu:14.04 bash
+Dockerでubuntu version 14.04のbash terminalを起動する(image にbasic という名前をつけて)
+
+inside of that container{
+  apt-get update && apt-get install curl
+  curl --version
+  output: curl 7.35.0
+}
+
+docker container run -it --name cent centos:7 bash
+Dockerでcentos version 7のbash terminalを起動する(image にcent という名前をつけて)
+
+inside of that container{
+  yum update curl
+  curl --version
+  output: curl 7.29.0
+}
